@@ -429,19 +429,6 @@
             document.getElementById('matchDate').valueAsDate = new Date();
         }
 
-        document.getElementById('matchupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Collect form data
-            const formData = new FormData(this);
-            const matchupData = {};
-            
-            for (let [key, value] of formData.entries()) {
-                matchupData[key] = value;
-            }
-
-        });
-
         // Add subtle mouse tracking effect
         document.addEventListener('mousemove', (e) => {
             const dots = document.querySelectorAll('.accent-dot');
