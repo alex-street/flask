@@ -6,6 +6,8 @@ from psycopg2.extras import RealDictCursor
 app = Flask(__name__)
 database_url = os.environ.get('DATABASE_URL')
 conn = psycopg2.connect(database_url, sslmode='require')
+cursor = conn.cursor()
+print(cursor)
 print(conn)
 
 @app.route('/')
@@ -25,8 +27,6 @@ def savematchup():
       matchDate = request.form['matchDate']
       firstPick = 1 if request.form['firstPick'] == "your-team" else 0
 
-      cursor = conn.cursor()
-      print(cursor)
       insert_query = """
                 INSERT INTO matchup (date, firstpick, us, them)
                 VALUES (%s, %i, %s, %s)
@@ -46,10 +46,6 @@ def savematchup():
 
   except:
       return None
-  
-  finally:
-      cursor.close()
-      conn.close()
 
 @app.route('/addprobabilities')
 def add_probs():
