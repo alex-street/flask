@@ -6,9 +6,10 @@ app = Flask(__name__)
 def index():
   return render_template('index.html')
 
-@app.route('/creatematchup/', methods=['POST'])
+@app.route('/creatematchup')
 def creatematchup():
   return render_template('creatematchup.html')
+@app.route('/creatematchup', methods=['POST'])
 def savematchup():
   try:
       # Get form data
