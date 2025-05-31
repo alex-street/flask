@@ -10,6 +10,20 @@ cursor = conn.cursor()
 print(cursor)
 print(conn)
 
+y1 = ''
+y2 = ''
+y3 = ''
+y4 = ''
+y5 = ''
+o1 = ''
+o2 = ''
+o3 = ''
+o4 = ''
+o5 = ''
+o6 = ''
+o7 = ''
+o8 = ''
+
 @app.route('/')
 def index():
   return render_template('index.html')
@@ -20,7 +34,8 @@ def creatematchup():
 
 @app.route('/addprobabilities/')
 def add_probs():
-   return render_template('addprobabilities.html')
+   
+   return render_template('addprobabilities.html', Player1Name=yourplayer,)
 
 @app.route('/savematchup', methods=['POST'])
 def savematchup():
