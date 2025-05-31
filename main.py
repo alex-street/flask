@@ -41,15 +41,28 @@ def savematchup():
       o8 = request.form['oppPlayer8Name']
 
       insert_query = """
-                INSERT INTO matchup (date, firstpick, us, them, )
-                VALUES (%s, %s, %s, %s)
+                INSERT INTO matchup (date, firstpick, us, them, opponent1, opponent2, opponent3, opponent4, opponent5, opponent6, opponent7, opponent8, home1, home2, home3, home4, home5)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 RETURNING id
             """
       cursor.execute(insert_query, (
                 matchDate,
                 firstPick,
                 yourTeamName,
-                opponentTeamName
+                opponentTeamName,
+                o1,
+                o2,
+                o3,
+                o4,
+                o5,
+                o6,
+                o7,
+                o8,
+                y1,
+                y2,
+                y3,
+                y4,
+                y5
             ))
             
       matchup_id = cursor.fetchone()[0]
