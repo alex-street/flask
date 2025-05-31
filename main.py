@@ -44,7 +44,8 @@ def savematchup():
             
       return redirect(url_for('add_probs'))
 
-  except:
+  except Exception as e:
+      print(f"Error fetching matchups: {e}")
       return None
 
 @app.route('/addprobabilities')
