@@ -242,6 +242,78 @@
             animation-delay: 2s;
         }
 
+        .grid-section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 24px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-label {
+            font-size: 0.875rem;
+            color: #9ca3af;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .item-input {
+            background: rgba(15, 16, 35, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            color: #ffffff;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            min-height: 44px;
+        }
+
+        .item-input:focus {
+            outline: none;
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+            background: rgba(15, 16, 35, 1);
+        }
+
+        .item-input::placeholder {
+            color: #6b7280;
+        }
+
+        .row-label {
+            font-size: 1rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .row-label::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            border-radius: 2px;
+            margin-right: 12px;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -302,7 +374,47 @@
         </div>
         
         <div class="form-container">
-            <form id="matchupForm" method="POST" action="/saveprobabilities">
+            <div class="form-section">
+                <h3 class="section-title">Match Probability Matrix</h3>
+                <div class="grid-section">
+                    <div class="row-label">Row 1</div>
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <label class="item-label">Col 1</label>
+                            <input type="text" class="item-input" placeholder="Enter value">
+                        </div>
+                        <div class="grid-item">
+                            <label class="item-label">Col 2</label>
+                            <input type="text" class="item-input" placeholder="Enter value">
+                        </div>
+                        <div class="grid-item">
+                            <label class="item-label">Col 3</label>
+                            <input type="text" class="item-input" placeholder="Enter value">
+                        </div>
+                        <div class="grid-item">
+                            <label class="item-label">Col 4</label>
+                            <input type="text" class="item-input" placeholder="Enter value">
+                        </div>
+                        <div class="grid-item">
+                            <label class="item-label">Col 5</label>
+                            <input type="text" class="item-input" placeholder="Enter value">
+                        </div>
+                        <div class="grid-item">
+                            <label class="item-label">Col 6</label>
+                            <input type="text" class="item-input" placeholder="Enter value">
+                        </div>
+                        <div class="grid-item">
+                            <label class="item-label">Col 7</label>
+                            <input type="text" class="item-input" placeholder="Enter value">
+                        </div>
+                        <div class="grid-item">
+                            <label class="item-label">Col 8</label>
+                            <input type="text" class="item-input" placeholder="Enter value">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form id="gridForm" method="POST" action="/saveprobabilities">
                 <div class="action-buttons">
                     <button type="button" class="btn btn-secondary" onclick="resetForm()">
                         Reset Form
