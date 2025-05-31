@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -21,13 +21,12 @@ def savematchup():
   try:
       # Get form data
       yourTeamName = request.form['yourTeamName']
-      print(yourTeamName)
       opponentTeamName = request.form['opponentTeamName']
       matchDate = request.form['matchDate']
       firstPick = 1 if request.form['firstPick'] == "your-team" else 0
 
       cursor = conn.cursor()
-
+      print(cursor)
       insert_query = """
                 INSERT INTO matchup (date, firstpick, us, them)
                 VALUES (%s, %i, %s, %s)
@@ -43,7 +42,7 @@ def savematchup():
       matchup_id = cursor.fetchone()[0]
       conn.commit()
             
-      return render_template('addprobabilities.html')
+      return redirect(url_for('add_probs'))
 
   except:
       return None
@@ -51,6 +50,10 @@ def savematchup():
   finally:
       cursor.close()
       conn.close()
+
+@app.route('/addprobabilities')
+def add_probs():
+   render_template('addprobabilities.html')
 
 if __name__ == '__main__':
   app.run(port=5000)
