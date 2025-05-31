@@ -26,9 +26,22 @@ def savematchup():
       opponentTeamName = request.form['opponentTeamName']
       matchDate = request.form['matchDate']
       firstPick = bool(1 if request.form['firstPick'] == "your-team" else 0)
+      y1 = request.form['yourPlayer1Name']
+      y2 = request.form['yourPlayer2Name']
+      y3 = request.form['yourPlayer3Name']
+      y4 = request.form['yourPlayer4Name']
+      y5 = request.form['yourPlayer5Name']
+      o1 = request.form['oppPlayer1Name']
+      o2 = request.form['oppPlayer2Name']
+      o3 = request.form['oppPlayer3Name']
+      o4 = request.form['oppPlayer4Name']
+      o5 = request.form['oppPlayer5Name']
+      o6 = request.form['oppPlayer6Name']
+      o7 = request.form['oppPlayer7Name']
+      o8 = request.form['oppPlayer8Name']
 
       insert_query = """
-                INSERT INTO matchup (date, firstpick, us, them)
+                INSERT INTO matchup (date, firstpick, us, them, )
                 VALUES (%s, %s, %s, %s)
                 RETURNING id
             """
@@ -48,7 +61,7 @@ def savematchup():
       print(f"Error fetching matchups: {e}")
       return None
 
-@app.route('/addprobabilities')
+@app.route('/addprobabilities/')
 def add_probs():
    render_template('addprobabilities.html')
 
