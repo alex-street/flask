@@ -295,6 +295,26 @@
             .action-buttons {
                 flex-direction: column;
             }
+
+            .player-section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .player-card {
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 12px;
+                padding: 1.5rem;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .player-header {
+                font-size: 1rem;
+                font-weight: 500;
+                margin-bottom: 1rem;
+                color: #ffffff;
+            }
         }
     </style>
 </head>
@@ -312,40 +332,9 @@
         <div class="form-container">
             <div class="form-section">
                 <h3 class="section-title">Match Probability Matrix</h3>
-                <div class="grid-section">
-                    <div class="row-label">Row 1</div>
-                    <div class="grid-container">
-                        <div class="grid-item">
-                            <label class="item-label">Col 1</label>
-                            <input type="text" class="item-input" placeholder="Enter value">
-                        </div>
-                        <div class="grid-item">
-                            <label class="item-label">Col 2</label>
-                            <input type="text" class="item-input" placeholder="Enter value">
-                        </div>
-                        <div class="grid-item">
-                            <label class="item-label">Col 3</label>
-                            <input type="text" class="item-input" placeholder="Enter value">
-                        </div>
-                        <div class="grid-item">
-                            <label class="item-label">Col 4</label>
-                            <input type="text" class="item-input" placeholder="Enter value">
-                        </div>
-                        <div class="grid-item">
-                            <label class="item-label">Col 5</label>
-                            <input type="text" class="item-input" placeholder="Enter value">
-                        </div>
-                        <div class="grid-item">
-                            <label class="item-label">Col 6</label>
-                            <input type="text" class="item-input" placeholder="Enter value">
-                        </div>
-                        <div class="grid-item">
-                            <label class="item-label">Col 7</label>
-                            <input type="text" class="item-input" placeholder="Enter value">
-                        </div>
-                        <div class="grid-item">
-                            <label class="item-label">Col 8</label>
-                            <input type="text" class="item-input" placeholder="Enter value">
+                    <div class="player-section">
+                        <div class="player-card">
+                            <div class="player-header">Player 1:</div>
                         </div>
                     </div>
                 </div>
