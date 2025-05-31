@@ -1,5 +1,7 @@
 from flask import Flask, render_template
 
+database_url = os.environ.get('DATABASE_URL')
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -16,6 +18,9 @@ def savematchup():
       yourTeamName = request.form.get('yourTeamName', '').strip()
       opponentTeamName = request.form.get('opponentTeamName', '').strip()
       matchDate = request.form.get('matchDate', '')
+
+  except:
+      return None
 
 if __name__ == '__main__':
   app.run(port=5000)
