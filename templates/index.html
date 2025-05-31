@@ -225,45 +225,26 @@
         <p class="subtitle">Manage your games and track performance</p>
         
         <div class="menu">
-            <button class="menu-item" onclick="handleMenuClick('create')">
-                Create New Matchup
-            </button>
-            <button class="menu-item" onclick="handleMenuClick('current')">
+            <a href="creatematchup.html">
+                <button class="menu-item">
+                    Create New Matchup
+                </button>
+            </a>
+            <a href="viewgames.html">
+            <button class="menu-item">
                 View Active Games
             </button>
-            <button class="menu-item" onclick="handleMenuClick('old')">
+            </a>
+            <a href="history.html">
+            <button class="menu-item">
                 Game History
             </button>
+            </a>
         </div>
     </div>
 
     <script>
-        function handleMenuClick(action) {
-            // Add click animation
-            event.target.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                event.target.style.transform = '';
-            }, 150);
-
-            // Handle the action
-            switch(action) {
-                case 'create':
-                    console.log('Creating new matchup...');
-                    // Add your create matchup logic here
-                    alert('Create New Matchup functionality would be implemented here');
-                    break;
-                case 'current':
-                    console.log('Viewing active games...');
-                    // Add your view current matchups logic here
-                    alert('View Active Games functionality would be implemented here');
-                    break;
-                case 'old':
-                    console.log('Viewing game history...');
-                    // Add your view old matchups logic here
-                    alert('Game History functionality would be implemented here');
-                    break;
-            }
-        }
+    
 
         // Add subtle mouse tracking effect
         document.addEventListener('mousemove', (e) => {
