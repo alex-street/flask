@@ -6,9 +6,15 @@ app = Flask(__name__)
 def index():
   return render_template('index.html')
 
-@app.route('/creatematchup/')
+@app.route('/creatematchup/', methods=['POST'])
 def creatematchup():
   return render_template('creatematchup.html')
+def savematchup():
+    try:
+        # Get form data
+        yourTeamName = request.form.get('yourTeamName', '').strip()
+        opponentTeamName = request.form.get('opponentTeamName', '').strip()
+        matchDate = request.form.get('matchDate', '')
 
 if __name__ == '__main__':
   app.run(port=5000)
