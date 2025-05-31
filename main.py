@@ -3,10 +3,10 @@ import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
+app = Flask(__name__)
 database_url = os.environ.get('DATABASE_URL')
 conn = psycopg2.connect(database_url, sslmode='require')
-
-app = Flask(__name__)
+print(conn)
 
 @app.route('/')
 def index():
