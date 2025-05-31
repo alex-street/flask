@@ -28,7 +28,7 @@ def savematchup():
       cursor = conn.cursor()
 
       insert_query = """
-                INSERT INTO matchups (date, firstpick, us, them)
+                INSERT INTO matchup (date, firstpick, us, them)
                 VALUES (%s, %i, %s, %s)
                 RETURNING id
             """
@@ -46,6 +46,10 @@ def savematchup():
 
   except:
       return None
+  
+  finally:
+      cursor.close()
+      conn.close()
 
 if __name__ == '__main__':
   app.run(port=5000)
