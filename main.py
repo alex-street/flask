@@ -9,7 +9,7 @@ def index():
 @app.route('/creatematchup')
 def creatematchup():
   return render_template('creatematchup.html')
-@app.route('/creatematchup', methods=['POST'])
+@app.route('/savematchup', methods=['POST'])
 def savematchup():
   try:
       # Get form data
