@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -22,6 +22,27 @@ def savematchup():
       yourTeamName = request.form.get('yourTeamName', '').strip()
       opponentTeamName = request.form.get('opponentTeamName', '').strip()
       matchDate = request.form.get('matchDate', '')
+      firstPick = 1 if request.form.get('firstPick', '') == "your-team" else 0
+
+      cursor = conn.cursor()
+
+      insert_query = """
+                INSERT INTO matchups (date, firstpick, us, them)
+                VALUES (%s, %i, %s, %s)
+                RETURNING id
+            """
+      cursor.execute(insert_query, (
+                matchDate,
+                firstPick,
+                yourTeamName,
+                opponentTeamName
+            ))
+            
+      matchup_id = cursor.fetchone()[0]
+      conn.commit()
+            
+      flash(f'Matchup created successfully! ID: {matchup_id}', 'success')
+      return redirect(url_for('view_matchups'))
 
   except:
       return None
