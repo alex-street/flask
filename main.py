@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request
 import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -15,6 +15,7 @@ def index():
 @app.route('/creatematchup/')
 def creatematchup():
   return render_template('creatematchup.html')
+
 @app.route('/savematchup', methods=['POST'])
 def savematchup():
   try:
@@ -41,8 +42,7 @@ def savematchup():
       matchup_id = cursor.fetchone()[0]
       conn.commit()
             
-      flash(f'Matchup created successfully! ID: {matchup_id}', 'success')
-      return redirect(url_for('view_matchups'))
+      return render_template('addprobabilities.html')
 
   except:
       return None
