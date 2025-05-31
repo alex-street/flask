@@ -20,7 +20,7 @@ def creatematchup():
 
 @app.route('/addprobabilities/')
 def add_probs():
-   render_template('addprobabilities.html')
+   return render_template('addprobabilities.html')
 
 @app.route('/savematchup', methods=['POST'])
 def savematchup():
