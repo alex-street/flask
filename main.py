@@ -20,11 +20,11 @@ def creatematchup():
 def savematchup():
   try:
       # Get form data
-      yourTeamName = request.form.get('yourTeamName', '').strip()
+      yourTeamName = request.form['yourTeamName']
       print(yourTeamName)
-      opponentTeamName = request.form.get('opponentTeamName', '').strip()
-      matchDate = request.form.get('matchDate', '')
-      firstPick = 1 if request.form.get('firstPick', '') == "your-team" else 0
+      opponentTeamName = request.form['opponentTeamName']
+      matchDate = request.form['matchDate']
+      firstPick = 1 if request.form['firstPick'] == "your-team" else 0
 
       cursor = conn.cursor()
 
