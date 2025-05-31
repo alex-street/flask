@@ -331,16 +331,16 @@
         </div>
         
         <div class="form-container">
-            <div class="form-section">
-                <h3 class="section-title">Match Probability Matrix</h3>
-                    <div class="player-section">
-                        <div class="player-card">
-                            <div class="player-header">Player 1: {{ Player1Name }}</div>
+            <form id="gridForm" method="POST" action="/saveprobabilities">
+                <div class="form-section">
+                    <h3 class="section-title">Match Probability Matrix</h3>
+                        <div class="player-section">
+                            <div class="player-card">
+                                <div class="player-header">Player 1: {{ Player1Name }}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <form id="gridForm" method="POST" action="/saveprobabilities">
                 <div class="action-buttons">
                     <button type="button" class="btn btn-secondary" onclick="resetForm()">
                         Reset Form
