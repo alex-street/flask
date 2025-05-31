@@ -21,6 +21,7 @@ def savematchup():
   try:
       # Get form data
       yourTeamName = request.form.get('yourTeamName', '').strip()
+      print(yourTeamName)
       opponentTeamName = request.form.get('opponentTeamName', '').strip()
       matchDate = request.form.get('matchDate', '')
       firstPick = 1 if request.form.get('firstPick', '') == "your-team" else 0
