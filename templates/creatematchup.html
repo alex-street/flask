@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Matchup - Pool App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f23;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #1a1a3e 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, #2a2a4e 0%, transparent 50%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .title {
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        select {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #4ade80;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.1);
+        }
+
+        .team-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .team-card.your-team {
+            border-left: 3px solid #4ade80;
+        }
+
+        .team-card.opponent-team {
+            border-left: 3px solid #60a5fa;
+        }
+
+        .team-header {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .player-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .player-number {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 0.25rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #4ade80;
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background: #22c55e;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #e0e0e0;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+        }
+
+        .accent-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .accent-dot:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .accent-dot:nth-child(2) {
+            top: 30%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .accent-dot:nth-child(3) {
+            bottom: 25%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row,
+            .team-section {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .container {
+                max-width: 500px;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
+            
+            .player-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="accent-dot"></div>
+    <div class="accent-dot"></div>
+    <div class="accent-dot"></div>
+    
+    <div class="container">
+        <div class="header">
+            <a href="#" class="back-btn" onclick="goBack()">
+                ← Back to Menu
+            </a>
+            <h1 class="title">Create New Matchup</h1>
+            <p class="subtitle">Enter match details and player information</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="matchupForm">
+                <div class="form-section">
+                    <h3 class="section-title">Match Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="matchDate">Date</label>
+                            <input type="date" id="matchDate" name="matchDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstPick">Who Picks First</label>
+                            <select id="firstPick" name="firstPick" required>
+                                <option value="">Select...</option>
+                                <option value="your-team">Your Team</option>
+                                <option value="opponent">Opponent Team</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="yourTeamName">Your Team Name</label>
+                            <input type="text" id="yourTeamName" name="yourTeamName" placeholder="Enter your team name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="opponentTeamName">Opponent Team Name</label>
+                            <input type="text" id="opponentTeamName" name="opponentTeamName" placeholder="Enter opponent team name" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Player Details</h3>
+                    <div class="team-section">
+                        <div class="team-card your-team">
+                            <div class="team-header">Your Team Players</div>
+                            <div id="yourTeamPlayers">
+                                <div class="player-row">
+                                    <div class="player-number">Player 1</div>
+                                    <input type="text" name="yourPlayer1Name" placeholder="Player name" required>
+                                </div>
+                                <div class="player-row">
+                                    <div class="player-number">Player 2</div>
+                                    <input type="text" name="yourPlayer2Name" placeholder="Player name" required>
+                                </div>
+                                <div class="player-row">
+                                    <div class="player-number">Player 3</div>
+                                    <input type="text" name="yourPlayer3Name" placeholder="Player name" required>
+                                </div>
+                                <div class="player-row">
+                                    <div class="player-number">Player 4</div>
+                                    <input type="text" name="yourPlayer4Name" placeholder="Player name" required>
+                                </div>
+                                <div class="player-row">
+                                    <div class="player-number">Player 5</div>
+                                    <input type="text" name="yourPlayer5Name" placeholder="Player name" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="team-card opponent-team">
+                            <div class="team-header">Opponent Players</div>
+                            <div id="opponentPlayers">
+                                <div class="player-row">
+                                    <div class="player-number">Player 1</div>
+                                    <input type="text" name="oppPlayer1Name" placeholder="Player name" required>
+                                </div>
+                                <div class="player-row">
+                                    <div class="player-number">Player 2</div>
+                                    <input type="text" name="oppPlayer2Name" placeholder="Player name" required>
+                                </div>
+                                <div class="player-row">
+                                    <div class="player-number">Player 3</div>
+                                    <input type="text" name="oppPlayer3Name" placeholder="Player name" required>
+                                </div>
+                                <div class="player-row">
+                                    <div class="player-number">Player 4</div>
+                                    <input type="text" name="oppPlayer4Name" placeholder="Player name" required>
+                                </div>
+                                <div class="player-row">
+                                    <div class="player-number">Player 5</div>
+                                    <input type="text" name="oppPlayer5Name" placeholder="Player name" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                        Reset Form
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Create Matchup
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('matchDate').valueAsDate = new Date();
+
+        function goBack() {
+            // This would navigate back to the main menu
+            alert('Navigate back to main menu');
+        }
+
+        function resetForm() {
+            document.getElementById('matchupForm').reset();
+            document.getElementById('matchDate').valueAsDate = new Date();
+        }
+
+        document.getElementById('matchupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const matchupData = {};
+            
+            for (let [key, value] of formData.entries()) {
+                matchupData[key] = value;
+            }
+            
+            // Calculate team totals
+            let yourTeamTotal = 0;
+            let opponentTotal = 0;
+            
+            for (let i = 1; i <= 5; i++) {
+                yourTeamTotal += parseInt(matchupData[`yourPlayer${i}Score`] || 0);
+                opponentTotal += parseInt(matchupData[`oppPlayer${i}Score`] || 0);
+            }
+            
+            matchupData.yourTeamTotal = yourTeamTotal;
+            matchupData.opponentTotal = opponentTotal;
+            matchupData.winner = yourTeamTotal > opponentTotal ? 'your-team' : 'opponent';
+            
+            console.log('Matchup Data:', matchupData);
+            
+            // Here you would save the data to your backend/storage
+            alert(`Matchup created successfully!\nYour Team: ${yourTeamTotal} - Opponent: ${opponentTotal}\nWinner: ${matchupData.winner === 'your-team' ? matchupData.yourTeamName : matchupData.opponentTeamName}`);
+        });
+
+        // Add subtle mouse tracking effect
+        document.addEventListener('mousemove', (e) => {
+            const dots = document.querySelectorAll('.accent-dot');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            dots.forEach((dot, index) => {
+                const speed = (index + 1) * 0.3;
+                const xPos = (x - 0.5) * speed * 15;
+                const yPos = (y - 0.5) * speed * 15;
+                dot.style.transform += ` translate(${xPos}px, ${yPos}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
