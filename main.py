@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import os
 
 database_url = os.environ.get('DATABASE_URL')
 
