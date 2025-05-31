@@ -439,24 +439,7 @@
             for (let [key, value] of formData.entries()) {
                 matchupData[key] = value;
             }
-            
-            // Calculate team totals
-            let yourTeamTotal = 0;
-            let opponentTotal = 0;
-            
-            for (let i = 1; i <= 5; i++) {
-                yourTeamTotal += parseInt(matchupData[`yourPlayer${i}Score`] || 0);
-                opponentTotal += parseInt(matchupData[`oppPlayer${i}Score`] || 0);
-            }
-            
-            matchupData.yourTeamTotal = yourTeamTotal;
-            matchupData.opponentTotal = opponentTotal;
-            matchupData.winner = yourTeamTotal > opponentTotal ? 'your-team' : 'opponent';
-            
-            console.log('Matchup Data:', matchupData);
-            
-            // Here you would save the data to your backend/storage
-            alert(`Matchup created successfully!\nYour Team: ${yourTeamTotal} - Opponent: ${opponentTotal}\nWinner: ${matchupData.winner === 'your-team' ? matchupData.yourTeamName : matchupData.opponentTeamName}`);
+
         });
 
         // Add subtle mouse tracking effect
