@@ -25,7 +25,7 @@ def savematchup():
       yourTeamName = request.form['yourTeamName']
       opponentTeamName = request.form['opponentTeamName']
       matchDate = request.form['matchDate']
-      firstPick = 1 if request.form['firstPick'] == "your-team" else 0
+      firstPick = bool(1 if request.form['firstPick'] == "your-team" else 0)
 
       insert_query = """
                 INSERT INTO matchup (date, firstpick, us, them)
