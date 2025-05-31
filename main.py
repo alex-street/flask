@@ -29,7 +29,7 @@ def savematchup():
 
       insert_query = """
                 INSERT INTO matchup (date, firstpick, us, them)
-                VALUES (%s, %i, %s, %s)
+                VALUES (%s, %s, %s, %s)
                 RETURNING id
             """
       cursor.execute(insert_query, (
