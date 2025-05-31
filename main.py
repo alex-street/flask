@@ -5,6 +5,13 @@ from datetime import datetime
 import os
 from dotenv import load_dotenv
 
+# Check for DATABASE_URL first (Railway's preferred method)
+database_url = os.environ.get('DATABASE_URL')
+if database_url:
+    conn = psycopg2.connect(database_url, sslmode='require')
+else:
+    # Fall back to individual variables
+    conn = psycopg2.connect(**DATABASE_CONFIG_RAILWAY)
 
 app = Flask(__name__)
 
