@@ -98,7 +98,7 @@ def savematchup():
       return None
   
 @app.route('/saveprobabilities', methods=['POST'])
-def savematchup():
+def saveprobabilities():
   try:
     possibilities = []
     for alpha in range(5):
