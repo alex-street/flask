@@ -34,7 +34,11 @@ def creatematchup():
 
 @app.route('/addprobabilities/')
 def add_probs():
-   return render_template('addprobabilities.html', Player1Name=y1,)
+   return render_template('addprobabilities.html', Player1Name=y1,
+                          Player2Name=y2,
+                          Player3Name=y3,
+                          Player4Name=y4,
+                          Player5Name=y5)
 
 @app.route('/savematchup', methods=['POST'])
 def savematchup():
