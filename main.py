@@ -101,6 +101,7 @@ def savematchup():
 def saveprobabilities():
   try:
     possibilities = [[None for _ in range(8)] for _ in range(5)]
+    print(possibilities)
     for alpha in range(5):
       for opp in range(8):
         reference = str(alpha+1) + "oppPlayer" + str(opp+1) + "Prob"
