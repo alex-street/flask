@@ -117,6 +117,7 @@ def saveprobabilities():
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                 RETURNING id
             """
+    print(possibilities)
     cursor.execute(insert_query, (
                 matchup_id,
                 str(possibilities[0][0])+","+str(possibilities[0][1])+","+str(possibilities[0][2])+","+str(possibilities[0][3])+","+str(possibilities[0][4])+","+str(possibilities[0][5])+","+str(possibilities[0][6])+","+str(possibilities[0][7]),
