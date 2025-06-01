@@ -20,10 +20,8 @@ def creatematchup():
 
 @app.route('/addprobabilities/')
 def add_probs():
-   last_matchup_query = """
-                  SELECT home1 FROM matchup ORDER BY id DESC LIMIT 1;
-                """
-   last_matchup = cursor.execute(last_matchup_query)
+   last_matchup = cursor.execute("SELECT * FROM matchup ORDER BY id DESC LIMIT 1")
+   last_matchup = cursor.fetchone()
    print(last_matchup)
    return render_template('addprobabilities.html')
 
