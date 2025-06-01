@@ -9,17 +9,8 @@ conn = psycopg2.connect(database_url, sslmode='require')
 cursor = conn.cursor()
 print(cursor)
 print(conn)
-
-def create_probabilities():
-  possibility = [[], [], [], [], []]
-  a = 5
-  o = 8
-  while a:
-   while o:
-     c = 0
-  return None
      
-     
+possibilities = []     
 
 @app.route('/')
 def index():
@@ -101,6 +92,39 @@ def savematchup():
       conn.commit()
             
       return redirect(url_for('add_probs'))
+
+  except Exception as e:
+      print(f"Error fetching matchups: {e}")
+      return None
+  
+@app.route('/savematchup', methods=['POST'])
+def savematchup():
+  try:
+    possibilities = []
+    for alpha in range(5):
+      possibilities[alpha] = []
+      for opp in range(8):
+        reference = str(alpha-1) + "oppPlayer" + str(opp-1) + "Prob"
+        possibilities[alpha][opp] = request.form[reference]
+
+    cursor.execute("SELECT id FROM matchup ORDER BY id DESC LIMIT 1")
+    matchup_id = cursor.fetchone()[0]
+    insert_query = """
+                INSERT INTO possibilities (matchup-id, alpha1, alpha2, alpha3, alpha4, alpha5)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                RETURNING id
+            """
+    cursor.execute(insert_query, (
+                matchup_id,
+                str(possibilities[0][0])+","+str(possibilities[0][1])+","+str(possibilities[0][2])+","+str(possibilities[0][3])+","+str(possibilities[0][4])+","+str(possibilities[0][5])+","+str(possibilities[0][6])+","+str(possibilities[0][7]),
+                str(possibilities[1][0])+","+str(possibilities[1][1])+","+str(possibilities[1][2])+","+str(possibilities[1][3])+","+str(possibilities[1][4])+","+str(possibilities[1][5])+","+str(possibilities[1][6])+","+str(possibilities[1][7]),
+                str(possibilities[2][0])+","+str(possibilities[2][1])+","+str(possibilities[2][2])+","+str(possibilities[2][3])+","+str(possibilities[2][4])+","+str(possibilities[2][5])+","+str(possibilities[2][6])+","+str(possibilities[2][7]),
+                str(possibilities[3][0])+","+str(possibilities[3][1])+","+str(possibilities[3][2])+","+str(possibilities[3][3])+","+str(possibilities[3][4])+","+str(possibilities[3][5])+","+str(possibilities[3][6])+","+str(possibilities[3][7]),
+                str(possibilities[4][0])+","+str(possibilities[4][1])+","+str(possibilities[4][2])+","+str(possibilities[4][3])+","+str(possibilities[4][4])+","+str(possibilities[4][5])+","+str(possibilities[4][6])+","+str(possibilities[4][7])
+            ))
+    matchup_id = cursor.fetchone()[0]
+    conn.commit()
+    return redirect(url_for('index'))
 
   except Exception as e:
       print(f"Error fetching matchups: {e}")
