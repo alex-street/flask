@@ -97,7 +97,7 @@ def savematchup():
       print(f"Error fetching matchups: {e}")
       return None
   
-@app.route('/savematchup', methods=['POST'])
+@app.route('/savemprobabilities', methods=['POST'])
 def savematchup():
   try:
     possibilities = []
