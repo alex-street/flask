@@ -23,7 +23,7 @@ def add_probs():
    cursor.execute("SELECT * FROM matchup ORDER BY id DESC LIMIT 1")
    last_matchup = cursor.fetchone()
    print(last_matchup)
-   your1 = last_matchup[11]
+   your1 = last_matchup['home1']
    return render_template('addprobabilities.html', Player1Name=your1)
 
 @app.route('/savematchup', methods=['POST'])
@@ -33,7 +33,7 @@ def savematchup():
       yourTeamName = request.form['yourTeamName']
       opponentTeamName = request.form['opponentTeamName']
       matchDate = request.form['matchDate']
-      firstPick = bool(1 if request.form['firstPick'] == "your-team" else 0)
+      type = request.form['typePool']
       y1 = request.form['yourPlayer1Name']
       y2 = request.form['yourPlayer2Name']
       y3 = request.form['yourPlayer3Name']
@@ -49,13 +49,13 @@ def savematchup():
       o8 = request.form['oppPlayer8Name']
 
       insert_query = """
-                INSERT INTO matchup (date, firstpick, us, them, opponent1, opponent2, opponent3, opponent4, opponent5, opponent6, opponent7, opponent8, home1, home2, home3, home4, home5)
+                INSERT INTO matchup (date, type, us, them, opponent1, opponent2, opponent3, opponent4, opponent5, opponent6, opponent7, opponent8, home1, home2, home3, home4, home5)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 RETURNING id
             """
       cursor.execute(insert_query, (
                 matchDate,
-                firstPick,
+                type,
                 yourTeamName,
                 opponentTeamName,
                 o1,
