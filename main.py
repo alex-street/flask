@@ -9,8 +9,7 @@ conn = psycopg2.connect(database_url, sslmode='require')
 cursor = conn.cursor()
 print(cursor)
 print(conn)
-     
-possibilities = []     
+         
 
 @app.route('/')
 def index():
@@ -99,14 +98,16 @@ def savematchup():
   
 @app.route('/saveprobabilities', methods=['POST'])
 def saveprobabilities():
+  possibilities = [] 
   try:
-    possibilities = [[None for _ in range(5)] for _ in range(8)]
+    possibilities = [[None for _ in range(8)] for _ in range(5)]
     print(possibilities)
+    print(request.form.items())
     for alpha in range(5):
       for opp in range(8):
         reference = str(alpha+1) + "oppPlayer" + str(opp+1) + "Prob"
         print(reference)
-        possibilities[alpha][opp] = request.form[reference]
+        #possibilities[alpha][opp] = request.form[reference]
 
     cursor.execute("SELECT id FROM matchup ORDER BY id DESC LIMIT 1")
     matchup_id = cursor.fetchone()[0]
