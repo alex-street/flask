@@ -20,10 +20,11 @@ def creatematchup():
 
 @app.route('/addprobabilities/')
 def add_probs():
-   cursor.execute("SELECT * FROM matchup ORDER BY id DESC LIMIT 1")
+   cursor.execute("SELECT home1, home2, home3, home4, home5 FROM matchup ORDER BY id DESC LIMIT 1")
    last_matchup = cursor.fetchone()
    print(last_matchup)
-   return render_template('addprobabilities.html')
+   your1 = last_matchup[0]
+   return render_template('addprobabilities.html', Player1Name=your1)
 
 @app.route('/savematchup', methods=['POST'])
 def savematchup():
