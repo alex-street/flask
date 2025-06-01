@@ -100,7 +100,7 @@ def savematchup():
 @app.route('/saveprobabilities', methods=['POST'])
 def saveprobabilities():
   try:
-    possibilities = [[None for _ in range(8)] for _ in range(5)]
+    possibilities = [[None for _ in range(5)] for _ in range(8)]
     print(possibilities)
     for alpha in range(5):
       for opp in range(8):
