@@ -298,13 +298,6 @@
                 flex-direction: column;
             }
         }
-            
-
-            .player-section {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
 
             .player-card {
                 background: rgba(255, 255, 255, 0.03);
@@ -354,7 +347,7 @@
             <form id="gridForm" method="POST" action="/saveprobabilities">
                 <div class="form-section">
                     <h3 class="section-title">Match Probability Matrix</h3>
-                        <div class="player-section">
+                      
                             <div class="player-card">
                                 <div class="player-header">Player 1: {{ Player1Name }}</div>
                                     <div class="probabilities-row">
@@ -373,7 +366,7 @@
                                     </div>
                                 
                             </div>
-                        </div>
+                        
                     
                 </div>
                 <div class="action-buttons">
