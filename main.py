@@ -108,7 +108,7 @@ def saveprobabilities():
       for opp in range(8):
         reference = str(alpha+1) + "oppPlayer" + str(opp+1) + "Prob"
         print(reference)
-        #possibilities[alpha][opp] = request.form[reference]
+        possibilities[alpha][opp] = request.form[reference]
 
     cursor.execute("SELECT id FROM matchup ORDER BY id DESC LIMIT 1")
     matchup_id = cursor.fetchone()[0]
