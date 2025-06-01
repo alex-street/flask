@@ -10,6 +10,17 @@ cursor = conn.cursor()
 print(cursor)
 print(conn)
 
+def create_probabilities():
+  possibility = [[], [], [], [], []]
+  a = 5
+  o = 8
+  while a:
+   while o:
+     c = 0
+  return None
+     
+     
+
 @app.route('/')
 def index():
   return render_template('index.html')
@@ -25,6 +36,9 @@ def add_probs():
    print(last_matchup)
    your1 = last_matchup[0]
    your2 = last_matchup[1]
+   your3 = last_matchup[2]
+   your4 = last_matchup[3]
+   your5 = last_matchup[4]
    opp1 = last_matchup[5]
    opp2 = last_matchup[6]
    opp3 = last_matchup[7]
@@ -33,7 +47,8 @@ def add_probs():
    opp6 = last_matchup[10]
    opp7 = last_matchup[11]
    opp8 = last_matchup[12]
-   return render_template('addprobabilities.html', Player1Name=your1, Player2Name=your2, Opp1Name=opp1, Opp2Name=opp2, Opp3Name=opp3, Opp4Name=opp4)
+   return render_template('addprobabilities.html', Player1Name=your1, Player2Name=your2, Player3Name=your3, Player4Name=your4, Player5Name=your5, Opp1Name=opp1, Opp2Name=opp2, Opp3Name=opp3, Opp4Name=opp4,
+                          Opp5Name=opp5, Opp6Name=opp6, Opp7Name=opp7, Opp8Name=opp8)
 
 @app.route('/savematchup', methods=['POST'])
 def savematchup():
