@@ -110,7 +110,7 @@ def saveprobabilities():
     matchup_id = cursor.fetchone()[0]
     
     insert_query = """
-                INSERT INTO possibilities (matchup-id, alpha1, alpha2, alpha3, alpha4, alpha5)
+                INSERT INTO probabilities (matchup_id, alpha1, alpha2, alpha3, alpha4, alpha5)
                 VALUES (%s, %s, %s, %s, %s, %s)
             """
     cursor.execute(insert_query, (
