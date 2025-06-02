@@ -130,7 +130,7 @@ def saveprobabilities():
       return None
   
 @app.route('/viewactivematchups/')
-def creatematchup():
+def viewmatchups():
   query = "SELECT id, us, them, type, date FROM your_table WHERE live = TRUE;"
   cursor.execute(query)
   live_matches = cursor.fetchall()
