@@ -226,7 +226,7 @@
         
         <div class="menu">
             {% for matchup in data %}
-            <a href="{{ url_for('editmatchup', matchup_id=matchup[0]) }}"></a>
+            <a href="{{ url_for('editmatchup', matchup_id=matchup[0]) }}">
                 <button class="menu-item">
                     <h3>Matchup #{{ matchup[0] }}: {{ matchup[1] }} vs {{ matchup[2] }} ({{ matchup[3] }})</h3>
                     <h5>{{ matchup[4] }}</h5>

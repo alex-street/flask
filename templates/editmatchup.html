@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pool Matchup Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f23;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #1a1a3e 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, #2a2a4e 0%, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .menu {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-item {
+            display: block;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 1.2rem 2rem;
+            margin: 1rem 0;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            color: #ffffff;
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .menu-item:active {
+            transform: translateY(0px);
+        }
+
+        .menu-item:first-child {
+            border-left: 3px solid #4ade80;
+        }
+
+        .menu-item:nth-child(2) {
+            border-left: 3px solid #60a5fa;
+        }
+
+        .menu-item:last-child {
+            border-left: 3px solid #a78bfa;
+        }
+
+        .menu-item:first-child:hover {
+            border-left-color: #22c55e;
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.2);
+        }
+
+        .menu-item:nth-child(2):hover {
+            border-left-color: #3b82f6;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        .menu-item:last-child:hover {
+            border-left-color: #8b5cf6;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .accent-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .accent-dot:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .accent-dot:nth-child(2) {
+            top: 30%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .accent-dot:nth-child(3) {
+            bottom: 25%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        .pool-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 1rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                max-width: 350px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .menu {
+                padding: 2rem 1.5rem;
+            }
+            
+            .menu-item {
+                padding: 1rem 1.5rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="accent-dot"></div>
+    <div class="accent-dot"></div>
+    <div class="accent-dot"></div>
+    
+    <div class="container">
+        <div class="pool-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+                <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.8"/>
+                <circle cx="8" cy="8" r="1.5" fill="currentColor" opacity="0.4"/>
+                <circle cx="16" cy="8" r="1.5" fill="currentColor" opacity="0.4"/>
+                <circle cx="8" cy="16" r="1.5" fill="currentColor" opacity="0.4"/>
+                <circle cx="16" cy="16" r="1.5" fill="currentColor" opacity="0.4"/>
+            </svg>
+        </div>
+        
+        <h1 class="title">Edit Matchup #{{ id }}</h1>
+        <p class="subtitle">Fill out matchup data and track actions</p>
+        
+        <div class="menu">
+            <form id="editMatchup1" method="POST" action="/saveprobabilities">
+                <h2>Round #1</h2>
+                <label for="typePool">Who Picks First</label>
+                            <select id="picksFirst" name="picksFirst" required>
+                                <option value="">Select...</option>
+                                <option value="1">Us</option>
+                                <option value="0">Them</option>
+                            </select>
+                <select id="opponentDropdown" name="round1Opp" required>
+                    {% for opponent in opponentplayers %}
+                        <option value="{{ opponent }}">{{ opponent }}</option>
+                    {% endfor %}
+                </select>
+                <select id="homeDropdown" name="round1Home" required>
+                    {% for home in homeplayers %}
+                        <option value="{{ home }}">{{ home }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Go</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    
+
+        // Add subtle mouse tracking effect
+        document.addEventListener('mousemove', (e) => {
+            const dots = document.querySelectorAll('.accent-dot');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            dots.forEach((dot, index) => {
+                const speed = (index + 1) * 0.3;
+                const xPos = (x - 0.5) * speed * 15;
+                const yPos = (y - 0.5) * speed * 15;
+                dot.style.transform += ` translate(${xPos}px, ${yPos}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
