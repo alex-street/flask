@@ -141,13 +141,13 @@ def editmatchup(matchup_id):
    return render_template('editmatchup.html', id=matchup_id)
 
 @app.route('/editmatchup-round1/<int:matchup_id>')
-def editmatchup(matchup_id):
+def editmatchup1(matchup_id):
    query = "SELECT home1, home2, home3, home4, home5, opponent1, opponent2, opponent3, opponent4, opponent5, opponent6, opponent7, opponent8 FROM matchup WHERE id = %s"
    cursor.execute(query, (matchup_id,))
    info = cursor.fetchone()
    h = info[:5]
    o = info[5:]
-   return render_template('editmatchup.html', id=matchup_id, homeplayers=h, opponentplayers=o)
+   return render_template('editmatchup-round1.html', id=matchup_id, homeplayers=h, opponentplayers=o)
 
 if __name__ == '__main__':
   app.run(port=5000)
