@@ -221,25 +221,16 @@
             </svg>
         </div>
         
-        <h1 class="title">Pool Matchups</h1>
-        <p class="subtitle">Manage your games and track performance</p>
+        <h1 class="title">Live Pool Matchups</h1>
+        <p class="subtitle">Click a live matchup to add round data</p>
         
         <div class="menu">
-            <a href="creatematchup">
-                <button class="menu-item">
-                    Create New Matchup
-                </button>
-            </a>
-            <a href="viewactivematchups">
-            <button class="menu-item">
-                View Active Matchups
-            </button>
-            </a>
-            <a href="history">
-            <button class="menu-item">
-                Game History
-            </button>
-            </a>
+            {% for matchup in data %}
+                <div class="menu-item">
+                    <h3>Matchup #{{ matchup[0] }}: {{ matchup[1] }} vs {{ matchup[2] }} ({{ matchup[3] }})</h3>
+                    <h5>{{ matchup[4] }}</h5>
+                </div>
+            {% endfor %}
         </div>
     </div>
 

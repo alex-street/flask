@@ -123,10 +123,18 @@ def saveprobabilities():
             ))
     conn.commit()
     return redirect(url_for('index'))
+  
 
   except Exception as e:
       print(f"Error fetching matchups: {e}")
       return None
+  
+@app.route('/viewactivematchups/')
+def creatematchup():
+  query = "SELECT id, us, them, type, date FROM your_table WHERE live = TRUE;"
+  cursor.execute(query)
+  live_matches = cursor.fetchall()
+  return render_template('viewactivematchups.html', data=live_matches)
 
 if __name__ == '__main__':
   app.run(port=5000)
