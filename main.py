@@ -112,12 +112,13 @@ def saveprobabilities():
 
     cursor.execute("SELECT id FROM matchup ORDER BY id DESC LIMIT 1")
     matchup_id = cursor.fetchone()[0]
+    
     insert_query = """
                 INSERT INTO possibilities (matchup-id, alpha1, alpha2, alpha3, alpha4, alpha5)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                 RETURNING id
             """
-    print(possibilities)
+    print(str(possibilities[0][0])+","+str(possibilities[0][1])+","+str(possibilities[0][2])+","+str(possibilities[0][3])+","+str(possibilities[0][4])+","+str(possibilities[0][5])+","+str(possibilities[0][6])+","+str(possibilities[0][7]))
     cursor.execute(insert_query, (
                 matchup_id,
                 str(possibilities[0][0])+","+str(possibilities[0][1])+","+str(possibilities[0][2])+","+str(possibilities[0][3])+","+str(possibilities[0][4])+","+str(possibilities[0][5])+","+str(possibilities[0][6])+","+str(possibilities[0][7]),
