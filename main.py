@@ -151,12 +151,14 @@ def savepickfirst(matchup_id):
                 pick,
   ))
   conn.commit()
-  query = "SELECT home1, home2, home3, home4, home5, opponent1, opponent2, opponent3, opponent4, opponent5, opponent6, opponent7, opponent8 FROM matchup WHERE id = %s"
+  query = "SELECT home1, home2, home3, home4, home5, opponent1, opponent2, opponent3, opponent4, opponent5, opponent6, opponent7, opponent8, firstpick FROM matchup WHERE id = %s"
   cursor.execute(query, (matchup_id,))
   info = cursor.fetchone()
   h = info[:5]
-  o = info[5:]
-  return render_template('editmatchup-round1.html', id=matchup_id, homeplayers=h, opponentplayers=o)
+  print(h)
+  o = info[5:13]
+  pick = info[13]
+  return render_template('editmatchup-round1.html', id=matchup_id, homeplayers=h, opponentplayers=o, firstpick=pick)
 
 if __name__ == '__main__':
   app.run(port=5000)
