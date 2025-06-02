@@ -118,7 +118,11 @@ def saveprobabilities():
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                 RETURNING id
             """
-    print(matchup_id)
+    print(str(possibilities[0][0])+","+str(possibilities[0][1])+","+str(possibilities[0][2])+","+str(possibilities[0][3])+","+str(possibilities[0][4])+","+str(possibilities[0][5])+","+str(possibilities[0][6])+","+str(possibilities[0][7]))
+    print(str(possibilities[1][0])+","+str(possibilities[1][1])+","+str(possibilities[1][2])+","+str(possibilities[1][3])+","+str(possibilities[1][4])+","+str(possibilities[1][5])+","+str(possibilities[1][6])+","+str(possibilities[1][7]))
+    print(str(possibilities[2][0])+","+str(possibilities[2][1])+","+str(possibilities[2][2])+","+str(possibilities[2][3])+","+str(possibilities[2][4])+","+str(possibilities[2][5])+","+str(possibilities[2][6])+","+str(possibilities[2][7]))
+    print(str(possibilities[3][0])+","+str(possibilities[3][1])+","+str(possibilities[3][2])+","+str(possibilities[3][3])+","+str(possibilities[3][4])+","+str(possibilities[3][5])+","+str(possibilities[3][6])+","+str(possibilities[3][7]))
+    print(str(possibilities[4][0])+","+str(possibilities[4][1])+","+str(possibilities[4][2])+","+str(possibilities[4][3])+","+str(possibilities[4][4])+","+str(possibilities[4][5])+","+str(possibilities[4][6])+","+str(possibilities[4][7]))
     cursor.execute(insert_query, (
                 matchup_id,
                 str(possibilities[0][0])+","+str(possibilities[0][1])+","+str(possibilities[0][2])+","+str(possibilities[0][3])+","+str(possibilities[0][4])+","+str(possibilities[0][5])+","+str(possibilities[0][6])+","+str(possibilities[0][7]),
