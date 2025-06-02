@@ -225,14 +225,18 @@
         <p class="subtitle">Fill out matchup data and track actions</p>
         
         <div class="menu">
-            <form id="editMatchup0" method="POST" action="/editmatchup-round1/{{ id }}">
-                <h2>Who Picks First?</h2>
-                <label for="typePool">Who Picks First</label>
-                            <select id="picksFirst" name="picksFirst" required>
-                                <option value="">Select...</option>
-                                <option value="1">Us</option>
-                                <option value="0">Them</option>
-                            </select>
+            <form id="editMatchup1" method="POST" action="/">
+                <h2>Round #1</h2>
+                <select id="opponentDropdown" name="round1Opp" required>
+                    {% for opponent in opponentplayers %}
+                        <option value="{{ opponent }}">{{ opponent }}</option>
+                    {% endfor %}
+                </select>
+                <select id="homeDropdown" name="round1Home" required>
+                    {% for home in homeplayers %}
+                        <option value="{{ home }}">{{ home }}</option>
+                    {% endfor %}
+                </select>
                 <button type="submit">Go to Round 1</button>
             </form>
         </div>
