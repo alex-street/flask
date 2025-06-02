@@ -131,7 +131,7 @@ def saveprobabilities():
   
 @app.route('/viewactivematchups/')
 def viewmatchups():
-  query = "SELECT id, us, them, type, date FROM your_table WHERE live = TRUE;"
+  query = "SELECT id, us, them, type, date FROM matchup WHERE live = TRUE;"
   cursor.execute(query)
   live_matches = cursor.fetchall()
   return render_template('viewactivematchups.html', data=live_matches)
