@@ -141,7 +141,7 @@ def editmatchup(matchup_id):
    return render_template('editmatchup.html', id=matchup_id)
 
 @app.route('/editmatchup-round1/<int:matchup_id>', methods=['POST'])
-def savepickfirst():
+def savepickfirst(matchup_id):
   pick = request.form['picksFirst']
   insert_query = """
                 INSERT INTO matchup (firstpick)
