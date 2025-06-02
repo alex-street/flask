@@ -136,5 +136,9 @@ def viewmatchups():
   live_matches = cursor.fetchall()
   return render_template('viewactivematchups.html', data=live_matches)
 
+@app.route('/editmatchup/<int:matchup_id>')
+def editmatchup(matchup_id):
+   return render_template('editmatchup.html', id=matchup_id)
+
 if __name__ == '__main__':
   app.run(port=5000)
